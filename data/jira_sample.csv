@@ -1,0 +1,9 @@
+issue_key,issue_type,summary,status,priority,assignee,team,sprint,due_date,release,dependency,blocker,acceptance_criteria,story_points,updated_date
+PROG-201,Story,Complete identity provider integration,Blocked,High,Aisha Khan,Platform,Sprint 24,2026-06-24,Release 4.1,Security architecture approval,SEC-142,Users can authenticate through the enterprise identity provider,8,2026-06-19
+PROG-202,Story,Add regional fulfilment rules,In Progress,Medium,,Fulfilment,Sprint 24,2026-06-26,Release 4.1,,,,5,2026-06-18
+PROG-203,Story,Create service transition dashboard,To Do,Medium,Liam Murphy,Operations,Sprint 25,2026-07-01,Release 4.1,,,,5,2026-06-17
+PROG-204,Story,Publish finance reconciliation feed,In Progress,Medium,Elena Rossi,Finance,Sprint 24,2026-06-28,Release 4.1,Finance data contract,,Daily reconciliation records match approved ledger totals,5,2026-06-19
+PROG-205,Story,Implement customer notification preferences,Done,Medium,Noah Williams,Customer Experience,Sprint 23,2026-06-14,Release 4.1,,,Customers can opt in or out by notification channel,5,2026-06-14
+PROG-206,Bug,Correct warehouse timezone conversion,Done,High,Marta Silva,Fulfilment,Sprint 23,2026-06-13,Release 4.1,,,Shipment times display in the warehouse local timezone,3,2026-06-13
+PROG-207,Story,Automate operational readiness checklist,Done,Low,Jonas Berg,Operations,Sprint 23,2026-06-15,Release 4.1,,,Checklist completion is recorded with owner and timestamp,3,2026-06-15
+PROG-208,Task,Complete production support training,In Progress,Low,Maeve Doyle,Operations,Sprint 24,2026-06-27,Release 4.1,,,Training attendance and support rota are confirmed,2,2026-06-18

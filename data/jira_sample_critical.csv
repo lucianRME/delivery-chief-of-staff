@@ -1,0 +1,7 @@
+issue_key,issue_type,summary,status,priority,assignee,team,sprint,due_date,release,dependency,blocker,acceptance_criteria,story_points,updated_date
+PROG-101,Story,Complete payment gateway integration,Blocked,Critical,Aisha Khan,Checkout,Sprint 24,2026-06-22,Release 3.2,Vendor security approval,SEC-88,Payments can be authorised and declined with audit events,8,2026-06-18
+PROG-102,Story,Add delivery slot selection,In Progress,High,,Fulfilment,Sprint 24,2026-06-24,Release 3.2,PROG-117,,,5,2026-06-17
+PROG-103,Story,Expose order tracking timeline,In Progress,Medium,Liam Murphy,Customer Experience,Sprint 24,2026-06-25,Release 3.2,,,Timeline shows all carrier events in chronological order,5,2026-06-18
+PROG-104,Bug,Resolve duplicate charge race condition,Blocked,High,Elena Rossi,Checkout,Sprint 24,2026-06-20,Release 3.2,,Database migration window,No duplicate charge occurs under concurrent retry,3,2026-06-19
+PROG-105,Story,Create operations exception dashboard,To Do,Medium,,Operations,Sprint 25,2026-07-02,Release 3.3,,,Exception counts can be filtered by depot and date,8,2026-06-15
+PROG-106,Story,Send proactive delay notifications,To Do,Low,Noah Williams,Customer Experience,Sprint 25,2026-07-05,Release 3.3,Messaging platform capacity,,,3,2026-06-14

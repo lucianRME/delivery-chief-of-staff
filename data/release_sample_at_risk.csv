@@ -1,0 +1,4 @@
+release_id,release_name,release_date,milestone,milestone_status,owner,entry_criteria_met,exit_criteria_met,rollback_plan,comms_plan,test_status,business_approval,notes
+REL-041,Release 4.1,2026-07-03,Integration Exit,At Risk,Aisha Khan,Yes,No,Yes,Yes,Two identity integration tests remain blocked,No,Recovery plan is active and approval is expected before readiness review
+REL-041,Release 4.1,2026-07-03,Operational Readiness,On Track,Maeve Doyle,Yes,Yes,Yes,Yes,Passed,Yes,Support training and operating procedures are on plan
+REL-041,Release 4.1,2026-07-03,Go Live Approval,Not Started,Jonas Berg,Yes,Yes,Yes,Yes,Planned,Yes,Decision meeting scheduled after integration exit

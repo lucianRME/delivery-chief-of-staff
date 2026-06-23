@@ -1,0 +1,4 @@
+release_id,release_name,release_date,milestone,milestone_status,owner,entry_criteria_met,exit_criteria_met,rollback_plan,comms_plan,test_status,business_approval,notes
+REL-032,Release 3.2,2026-06-28,Code Freeze,At Risk,Maeve Doyle,No,No,No,Yes,System testing blocked,No,Payment certification and database window remain unresolved
+REL-032,Release 3.2,2026-06-28,Production Readiness Review,Not Started,,No,No,No,Yes,Not Started,No,Review scheduled for 24 June
+REL-033,Release 3.3,2026-07-12,Scope Lock,On Track,Jonas Berg,Yes,No,Yes,No,Planning,Yes,Exit criteria assessed after scope lock

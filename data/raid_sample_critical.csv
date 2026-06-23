@@ -1,0 +1,6 @@
+raid_id,type,description,impact,probability,owner,mitigation,due_date,status,linked_issue,escalation_required
+RAID-001,Risk,Payment provider certification may miss code freeze,High,High,Aisha Khan,,2026-06-21,Open,PROG-101,Yes
+RAID-002,Dependency,Security approval required for payment integration,High,Medium,,,2026-06-20,Open,PROG-101,Yes
+RAID-003,Risk,Production-like test data may remain incomplete at code freeze,High,Medium,Elena Rossi,,2026-06-23,Open,PROG-104,No
+RAID-004,Assumption,Carrier event feed remains backward compatible,Medium,Low,Liam Murphy,Run contract tests against carrier sandbox,2026-06-26,Monitoring,PROG-103,No
+RAID-005,Dependency,Messaging capacity increase must complete before launch,Medium,Medium,Noah Williams,Confirm quota increase with platform team,2026-07-01,Open,PROG-106,No

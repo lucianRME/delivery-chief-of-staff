@@ -1,0 +1,6 @@
+raid_id,type,description,impact,probability,owner,mitigation,due_date,status,linked_issue,escalation_required
+RAID-201,Risk,Identity provider approval may delay integration completion,High,Medium,Aisha Khan,Daily review with security architecture and an agreed fallback test path,2026-06-24,Open,PROG-201,No
+RAID-202,Dependency,Finance data contract must be approved before reconciliation testing,Medium,Medium,Elena Rossi,Joint design review scheduled with Finance data owners,2026-06-25,Open,PROG-204,No
+RAID-203,Risk,Support rota capacity may be constrained during launch week,Medium,Low,Maeve Doyle,Cross-train two additional support analysts,2026-06-28,Monitoring,PROG-208,No
+RAID-204,Assumption,Warehouse event volumes remain within tested thresholds,Low,Low,Marta Silva,Monitor load-test results and production telemetry,2026-06-26,Accepted,PROG-206,No
+RAID-205,Issue,Notification preference migration reconciliation completed,Low,Low,Noah Williams,Reconciliation completed and signed off,2026-06-16,Closed,PROG-205,No
