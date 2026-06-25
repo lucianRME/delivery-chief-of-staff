@@ -8,6 +8,7 @@ import streamlit as st
 from agents.dependency_agent import analyze_dependencies
 from agents.executive_summary_agent import generate_executive_summary
 from agents.governance_agent import analyze_governance
+from agents.llm_summary_agent import generate_ai_executive_brief
 from agents.recommendation_agent import recommend_actions
 from agents.risk_agent import analyze_risks
 from core.data_loader import load_csv, load_sample_data
@@ -47,13 +48,28 @@ with st.sidebar.expander("Architecture / About This MVP"):
         "- Uses deterministic scoring\n"
         "- Requires no Jira API\n"
         "- Requires no cloud deployment\n"
-        "- Requires no OpenAI API"
+        "- Requires no OpenAI API for the deterministic core flow"
     )
     st.markdown("**Agent sequence**")
     st.write(
         "Risk Agent → Dependency Agent → Governance Agent → Recommendation Agent → "
         "Executive Summary Agent"
     )
+    st.caption(
+        "Guardrail: recommendations are advisory and require human review. "
+        "The deterministic score and evidence trail remain the source of truth."
+    )
+
+with st.sidebar.expander("Official Use Case Alignment"):
+    st.write("BFSI / Banking / Banking Operations")
+    st.write("Middle & Back Office Operations")
+    st.write("Shared services operations work orchestration")
+    st.markdown(
+        "- Human-in-loop controls\n"
+        "- Reporting and evidence"
+    )
+
+enable_ai_brief = st.sidebar.checkbox("Enable AI-enhanced executive brief", value=False)
 
 st.subheader("Delivery data")
 upload_columns = st.columns(3)
@@ -123,6 +139,20 @@ all_findings = risk_findings + dependency_findings + governance_findings
 score_result = calculate_health_score(all_findings)
 recommendations = recommend_actions(all_findings)
 executive_summary = generate_executive_summary(score_result, all_findings)
+ai_brief_result = {"enabled": False, "brief": None, "error": None}
+ai_executive_brief = None
+if enable_ai_brief:
+    with st.spinner("Generating AI-enhanced executive brief..."):
+        ai_brief_result = generate_ai_executive_brief(
+            score_result,
+            executive_summary,
+            all_findings,
+            recommendations,
+            enabled=True,
+        )
+    if ai_brief_result.get("enabled"):
+        ai_executive_brief = ai_brief_result.get("brief")
+
 markdown_report = build_markdown_report(
     score_result,
     executive_summary,
@@ -130,6 +160,7 @@ markdown_report = build_markdown_report(
     dependency_findings,
     governance_findings,
     recommendations,
+    ai_executive_brief=ai_executive_brief,
 )
 
 st.subheader("Executive summary")
@@ -156,6 +187,28 @@ if executive_summary["leadership_attention"]:
     for action in executive_summary["leadership_attention"]:
         st.markdown(f"- {action}")
 st.info(f"Decision required: {executive_summary['decision_required']}")
+
+if enable_ai_brief:
+    if ai_executive_brief:
+        st.subheader("AI-Enhanced Executive Brief")
+        st.caption(
+            "AI enhancement uses deterministic evidence-backed findings and does not alter "
+            "the score, findings or evidence keys."
+        )
+        st.markdown(f"**{ai_executive_brief.get('headline', '')}**")
+        st.write(ai_executive_brief.get("executive_briefing", ""))
+        leadership_actions = ai_executive_brief.get("leadership_actions", [])
+        if leadership_actions:
+            st.write("Leadership actions:")
+            for action in leadership_actions:
+                st.markdown(f"- {action}")
+        st.info(f"Decision required: {ai_executive_brief.get('decision_required', '')}")
+        st.caption(ai_executive_brief.get("confidence_note", ""))
+    elif ai_brief_result.get("error") == "OPENAI_API_KEY not configured":
+        st.info("AI-enhanced brief unavailable: OPENAI_API_KEY not configured.")
+    else:
+        st.warning(f"AI-enhanced brief unavailable: {ai_brief_result.get('error')}")
+
 st.write("Download an evidence-backed executive report for governance review or leadership discussion.")
 st.download_button(
     label="Download Executive Report",

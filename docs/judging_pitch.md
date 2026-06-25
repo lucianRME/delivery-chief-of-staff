@@ -20,7 +20,29 @@ Delivery Chief of Staff is a local Streamlit application that ingests Jira, RAID
 - A concise executive summary and leadership decision prompt.
 - A downloadable Markdown report with a complete audit trail.
 
-The MVP uses transparent, deterministic rules. It is reliable in a live demo, easy to inspect, and does not depend on cloud infrastructure or external APIs.
+The MVP uses transparent, deterministic rules. It is reliable in a live demo, easy to inspect, and the core governance assessment does not depend on cloud infrastructure or external APIs.
+
+## Official Use Case Alignment
+
+Delivery Chief of Staff is aligned to the official hackathon category:
+
+- Industry: BFSI.
+- Sector: Banking.
+- Vertical: Banking Operations.
+- Area: Middle & Back Office Operations.
+- Scenario: Shared services, operations work orchestration.
+- Theme: Operations modernisation via orchestration and knowledge.
+
+It maps to operations work orchestration because it:
+
+- Accepts work artefacts as intake.
+- Validates and classifies delivery inputs.
+- Performs control checks.
+- Detects exceptions.
+- Recommends human-in-loop actions.
+- Produces reporting and evidence.
+
+Delivery Chief of Staff is not a generic project dashboard. It is an agentic operations governance workflow for banking delivery reviews, designed to improve the consistency, speed and auditability of shared services delivery governance.
 
 ## Why Agentic AI
 
@@ -47,9 +69,16 @@ This separation makes the analysis modular, explainable, and extensible. Each ag
 - **Enterprise relevance:** delivery assurance and governance are recurring problems across large organisations.
 - **Measurable impact:** preparation time, detected gaps, and decision turnaround can all be tracked.
 - **Realistic implementation:** the MVP works with the CSV exports teams already use.
-- **Local demo reliability:** no network, cloud service, or external API is required.
+- **Local demo reliability:** no network, cloud service, or external API is required for the deterministic core flow.
 - **Low technical risk:** the architecture is simple, deterministic, and easy to test.
 - **Strong executive storytelling:** the demo moves from fragmented delivery data to a decision-ready report in under a minute.
+
+## Enterprise Guardrails
+
+- The system recommends but does not approve delivery, release or escalation decisions.
+- It preserves deterministic evidence and scoring as the source-of-truth assessment.
+- OpenAI is optional and does not change the Delivery Health Score, findings, evidence keys or score deductions.
+- This design is appropriate for regulated banking operations and shared services governance because accountable leaders retain decision authority.
 
 ## MVP Scope
 

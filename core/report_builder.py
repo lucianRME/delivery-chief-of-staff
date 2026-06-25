@@ -48,10 +48,12 @@ def build_markdown_report(
     dependency_findings: list,
     governance_findings: list,
     recommendations: list,
+    ai_executive_brief: dict | None = None,
 ) -> str:
     """Return a complete evidence-backed executive report in Markdown."""
     scoring_result = scoring_result if isinstance(scoring_result, dict) else {}
     executive_summary = executive_summary if isinstance(executive_summary, dict) else {}
+    ai_executive_brief = ai_executive_brief if isinstance(ai_executive_brief, dict) else None
 
     lines = [
         "# Delivery Chief of Staff Executive Report",
@@ -66,6 +68,33 @@ def build_markdown_report(
         "",
         f"**Decision required:** {_text(executive_summary.get('decision_required'))}",
         "",
+    ]
+
+    if ai_executive_brief:
+        lines.extend([
+            "## AI-Enhanced Executive Brief",
+            "",
+            _text(ai_executive_brief.get("headline")),
+            "",
+            _text(ai_executive_brief.get("executive_briefing")),
+            "",
+            "**Leadership actions:**",
+            "",
+        ])
+        leadership_actions = ai_executive_brief.get("leadership_actions")
+        if isinstance(leadership_actions, list) and leadership_actions:
+            lines.extend(f"- {_text(action)}" for action in leadership_actions)
+        else:
+            lines.append("- No AI-enhanced leadership actions were generated.")
+        lines.extend([
+            "",
+            f"**Decision required:** {_text(ai_executive_brief.get('decision_required'))}",
+            "",
+            f"**Confidence note:** {_text(ai_executive_brief.get('confidence_note'))}",
+            "",
+        ])
+
+    lines.extend([
         "## Delivery Health Score",
         "",
         f"Delivery Health Score: {_text(scoring_result.get('score'), 'N/A')}/100",
@@ -76,7 +105,7 @@ def build_markdown_report(
         "",
         "## Leadership Attention Required",
         "",
-    ]
+    ])
 
     leadership_attention = executive_summary.get("leadership_attention")
     if isinstance(leadership_attention, list) and leadership_attention:

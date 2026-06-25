@@ -4,6 +4,8 @@
 
 Show how Delivery Chief of Staff converts three familiar delivery artefacts—a Jira export CSV, RAID log CSV, and release plan CSV—into executive-ready governance insight in under a minute.
 
+Position the demo as an agentic operations governance assistant aligned to the Banking Operations / Middle & Back Office Operations use case: shared services operations work orchestration.
+
 ## 3-Minute Flow
 
 ### 0:00–0:20 — Problem
@@ -12,7 +14,11 @@ Show how Delivery Chief of Staff converts three familiar delivery artefacts—a 
 
 **Speaker notes:**
 
+“Today I’m demonstrating Delivery Chief of Staff as an agentic operations governance assistant aligned to the Banking Operations / Middle & Back Office Operations use case: shared services operations work orchestration.”
+
 “Enterprise delivery leaders rarely lack data. The problem is that the data is spread across Jira exports, RAID logs, and release plans. Programme teams spend hours reconciling those artefacts before leadership can understand what is at risk, what needs a decision, and who must act.”
+
+“This maps to the official value chain: work intake, control checks, exception handling, human-in-loop recommendations, and evidence-backed reporting.”
 
 ### 0:20–0:40 — Solution Overview
 
@@ -34,11 +40,13 @@ Show how Delivery Chief of Staff converts three familiar delivery artefacts—a 
 
 ### 1:10–1:50 — Walk Through Dashboard
 
-**On screen:** Show the score, status, executive summary, leadership attention, and score breakdown.
+**On screen:** Show the score, status, executive summary, leadership attention, Agent Workflow Trace, and score breakdown.
 
 **Speaker notes:**
 
 “The score is not a black box. Findings are deduplicated by evidence item, so one Jira issue is not repeatedly penalised for being blocked, high priority, and dependent. Category caps prevent one type of problem from overwhelming the assessment.”
+
+“The Agent Workflow Trace shows the specialist agents that ran, what each analysed, and the highest-priority concern produced by each step.”
 
 “The executive summary focuses on the top themes: delivery risk, dependencies, and release readiness. Leadership gets a clear decision prompt rather than a long list of project-management observations. The deduction tables show exactly how the score was calculated.”
 

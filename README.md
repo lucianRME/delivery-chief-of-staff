@@ -1,5 +1,7 @@
 # Delivery Chief of Staff
 
+**Agentic Operations Governance Assistant for Banking Delivery Reviews**
+
 **Delivery Chief of Staff** is a local Streamlit MVP that acts as an executive delivery advisor for enterprise programmes.
 
 It reviews Jira exports, RAID logs and release plans, then converts them into an evidence-backed delivery health assessment, governance findings, prioritised leadership actions and a downloadable executive report.
@@ -42,6 +44,54 @@ The MVP supports:
 
 All processing runs locally in memory. The application has no database, backend service, cloud deployment or Jira API dependency.
 
+## Official Hackathon Use Case Alignment
+
+Delivery Chief of Staff aligns with the official hackathon use case:
+
+* Industry: BFSI
+* Sector: Banking
+* Vertical: Banking Operations
+* Area: Middle & Back Office Operations
+* Scenario: Shared services, operations work orchestration
+* Theme: Operations modernisation via orchestration and knowledge
+* Primary use case: Operations work orchestration with human-in-loop controls
+
+The MVP supports this use case by automating delivery governance review across Jira, RAID and release artefacts. It turns work artefacts into validated inputs, runs control checks, detects exceptions, routes recommended actions to accountable leaders and produces evidence-backed reporting.
+
+| Official value-chain step | Delivery Chief of Staff capability |
+|---|---|
+| Work intake & classification | CSV ingestion and validation of Jira, RAID and release artefacts |
+| Data/document extraction | Structured extraction from delivery artefacts |
+| Policy/control checks | Governance Agent checks ownership, mitigations, acceptance criteria and release readiness |
+| Task routing & approvals | Recommendation Agent proposes human-in-loop leadership actions |
+| Execution across systems | Provides action-ready outputs for execution in existing delivery and governance tools |
+| Exception handling | Risk, dependency, blocker and governance gap detection |
+| Reporting & evidence | Dashboard, evidence trail and downloadable executive report |
+| Continuous improvement | Repeatable findings, score deductions and evidence model support trend analysis in future iterations |
+
+This positions the MVP as an agentic operations governance assistant for banking delivery and shared services reviews.
+
+## Human-in-the-loop Controls
+
+Delivery Chief of Staff is designed to support governance decisions, not automate them.
+
+* Agents identify risks, dependencies, governance gaps and release readiness issues.
+* The system recommends actions but does not automatically approve delivery decisions.
+* Delivery leaders remain accountable for decisions, escalations and approvals.
+* Evidence keys support human review, auditability and governance confidence.
+* This is appropriate for banking operations where governance decisions require oversight.
+
+## Operational Guardrails
+
+Delivery Chief of Staff is designed for human-in-loop banking operations governance.
+
+* Deterministic scoring remains the source of truth.
+* Findings and recommendations are evidence-backed only.
+* OpenAI, if enabled, is narrative-only and does not alter the source-of-truth assessment.
+* The app does not perform autonomous release approvals or system execution.
+* Recommendations require human review and approval.
+* The evidence trail supports auditability and governance confidence.
+
 ## Why this matters
 
 Delivery Chief of Staff is designed for enterprise delivery governance, programme assurance and release readiness reviews.
@@ -55,6 +105,39 @@ Estimated impact hypotheses:
 * Improve consistency of RAID, dependency and release readiness checks.
 * Accelerate leadership decision-making with evidence-backed recommendations.
 * Improve auditability through stable evidence keys and traceable findings.
+
+## Before and after
+
+### Before Delivery Chief of Staff
+
+A typical enterprise delivery review may require manual inspection of:
+
+* Jira delivery status
+* Blocked or ageing work items
+* RAID log risks, issues and dependencies
+* Missing owners or mitigations
+* Release readiness controls
+* Business approvals
+* Rollback and communications readiness
+* Executive summary preparation
+
+This can take several hours and may still result in inconsistent conclusions.
+
+### After Delivery Chief of Staff
+
+A programme manager or delivery leader can upload Jira, RAID and release artefacts and receive:
+
+* Delivery Health Score
+* Executive summary
+* Top risks
+* Dependency and blocker analysis
+* Governance findings
+* Recommended leadership actions
+* Score deductions
+* Evidence and audit trail
+* Downloadable executive report
+
+The result is a faster, more consistent and more auditable delivery governance review.
 
 ## Agent Architecture
 
@@ -93,10 +176,30 @@ This supports:
 * Repeatability
 * Auditability
 * Local execution
-* No external API dependency
+* No external API dependency for the core assessment
 * Reliable hackathon demo execution
 
-A future OpenAI enhancement could improve executive narrative generation or natural-language Q&A, but the underlying Delivery Health Score, findings and evidence model should remain deterministic for governance trust.
+The optional OpenAI enhancement improves executive narrative wording only. The underlying Delivery Health Score, findings and evidence model remain deterministic for governance trust.
+
+## Optional OpenAI Enhancement
+
+The app works without OpenAI. The deterministic governance engine remains the source of truth for the Delivery Health Score, findings, recommendations and evidence keys.
+
+OpenAI can optionally generate a polished executive brief from the existing evidence-backed findings. This is a narrative enhancement only:
+
+* OpenAI does not alter the Delivery Health Score.
+* OpenAI does not alter findings or evidence keys.
+* OpenAI does not invent risks, evidence or unsupported actions.
+* Delivery leaders remain accountable for human-in-loop review and approval.
+
+To enable the optional AI-enhanced executive brief, set `OPENAI_API_KEY` in your environment and use the sidebar checkbox in the app:
+
+```bash
+export OPENAI_API_KEY="your-key-here"
+streamlit run app.py
+```
+
+You can also place `OPENAI_API_KEY` in a local `.env` file. Do not commit `.env` or API keys.
 
 ## Demo scenarios
 
@@ -134,7 +237,9 @@ streamlit run app.py
 
 Open the URL printed by Streamlit.
 
-Recommended demo flow:
+## Recommended demo flow
+
+Use the default At Risk Programme scenario for the main demo.
 
 1. Select **At Risk Programme**.
 2. Click **Load Selected Sample Scenario**.
@@ -143,6 +248,10 @@ Recommended demo flow:
 5. Review the top risks, dependencies, governance findings and recommendations.
 6. Open the evidence and audit trail.
 7. Download the executive report.
+
+Suggested demo message:
+
+> Delivery Chief of Staff reduces enterprise delivery review preparation from hours to under a minute by using specialised agents to analyse Jira, RAID and release artefacts, generate an evidence-backed Delivery Health Score, prioritise leadership actions and produce a downloadable executive governance report.
 
 ## Uploading custom CSVs
 
@@ -182,6 +291,41 @@ The dashboard provides:
 * Evidence and audit trail
 * Downloadable Markdown executive report
 
+## Scoring model
+
+The Delivery Health Score starts at 100 and applies deductions for evidence-backed delivery findings.
+
+The scoring model is designed to be explainable and audit-friendly:
+
+* Findings are linked to stable evidence keys.
+* Duplicate findings against the same evidence item are deduplicated.
+* Category caps prevent one issue type from overwhelming the score.
+* Score deductions are displayed in the dashboard and report.
+* The score is supported by an evidence and audit trail.
+
+This avoids a black-box assessment and allows delivery leaders to understand why a programme is rated Healthy, Watch, At Risk or Critical.
+
+## Evidence model
+
+Each finding includes a structured evidence contract:
+
+* Severity
+* Category
+* Category group
+* Finding
+* Evidence
+* Evidence key
+* Source
+* Recommended action
+
+Example evidence keys:
+
+* `jira:PROG-104`
+* `raid:R-002`
+* `release:REL-1.2:UAT Sign-off`
+
+This evidence model supports explainability, governance review and leadership trust.
+
 ## Project structure
 
 ```text
@@ -219,6 +363,16 @@ The dashboard provides:
 └── tests/
 ```
 
+## Documentation
+
+Additional documentation is available under `docs/`:
+
+* [Agent Architecture](docs/agents.md)
+* [Demo Script](docs/demo_script.md)
+* [Judging Pitch](docs/judging_pitch.md)
+* [Business Impact](docs/business_impact.md)
+* [Submission Alignment](docs/submission_alignment.md)
+
 ## MVP scope
 
 Included in the MVP:
@@ -243,7 +397,7 @@ Intentionally excluded from the MVP:
 * PDF generation
 * PowerPoint generation
 * Complex multi-agent frameworks
-* Required OpenAI dependency
+* Required OpenAI API key for the normal demo flow
 
 These exclusions are deliberate. The MVP prioritises demo reliability, enterprise relevance, low technical risk and completion within the hackathon timeframe.
 
@@ -266,3 +420,16 @@ Delivery Chief of Staff is not a generic dashboard.
 It is an agentic delivery governance workflow that converts operational delivery artefacts into executive-ready recommendations with an evidence and audit trail.
 
 The MVP demonstrates how agentic AI can improve enterprise delivery governance by reducing manual review effort, improving consistency and accelerating leadership decision-making.
+
+## Submission note
+
+This MVP was intentionally designed for fast, reliable local demonstration within the hackathon timeframe.
+
+It focuses on:
+
+* Enterprise relevance
+* Measurable business impact
+* Agentic workflow clarity
+* Evidence-backed recommendations
+* Low technical risk
+* High demo reliability
