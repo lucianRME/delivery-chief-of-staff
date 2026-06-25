@@ -14,6 +14,20 @@ executive report.
 Delivery Chief of Staff turns delivery artefacts into executive-ready governance insight in under a
 minute.
 
+## Demo Preview
+
+### Delivery Health Dashboard
+
+![Delivery Health Dashboard](docs/screenshots/dashboard.png)
+
+### Agent Workflow Trace
+
+![Agent Workflow Trace](docs/screenshots/agenttrace.png)
+
+### Executive Report Output
+
+![Executive Report Output](docs/screenshots/report.png)
+
 ## Judge Quick Start
 
 Run the local demo:
