@@ -37,19 +37,41 @@ def analyze_dependencies(jira: pd.DataFrame, raid: pd.DataFrame) -> list[dict]:
         priority = _text(row.get("priority"))
         if dependency:
             severity = "High" if _is(priority, "Critical", "Highest", "High") else "Medium"
-            findings.append(_finding(
-                severity, "Active Dependency",
-                f"{issue} has an active dependency" + (" on a high-priority delivery path." if severity == "High" else "."),
-                f"issue_key={issue}; dependency={dependency}; priority={priority or 'missing'}",
-                evidence_key, "Jira",
-                f"Confirm the owner and delivery date for dependency '{dependency}' affecting {issue}.",
-            ))
+            finding_text = f"{issue} has an active dependency"
+            finding_text += (
+                " on a high-priority delivery path."
+                if severity == "High"
+                else "."
+            )
+            findings.append(
+                _finding(
+                    severity,
+                    "Active Dependency",
+                    finding_text,
+                    (
+                        f"issue_key={issue}; dependency={dependency}; "
+                        f"priority={priority or 'missing'}"
+                    ),
+                    evidence_key,
+                    "Jira",
+                    (
+                        f"Confirm the owner and delivery date for dependency "
+                        f"'{dependency}' affecting {issue}."
+                    ),
+                )
+            )
         if blocker:
-            findings.append(_finding(
-                "High", "Documented Blocker", f"{issue} has a documented blocker.",
-                f"issue_key={issue}; blocker={blocker}", evidence_key, "Jira",
-                f"Track blocker '{blocker}' to closure with an accountable owner.",
-            ))
+            findings.append(
+                _finding(
+                    "High",
+                    "Documented Blocker",
+                    f"{issue} has a documented blocker.",
+                    f"issue_key={issue}; blocker={blocker}",
+                    evidence_key,
+                    "Jira",
+                    f"Track blocker '{blocker}' to closure with an accountable owner.",
+                )
+            )
 
     for _, row in raid.iterrows():
         if not _is(row.get("type"), "Dependency"):
@@ -59,22 +81,55 @@ def analyze_dependencies(jira: pd.DataFrame, raid: pd.DataFrame) -> list[dict]:
         evidence_key = f"raid:{raid_key or 'missing'}"
         owner = _text(row.get("owner"))
         linked_issue = _text(row.get("linked_issue"))
-        findings.append(_finding(
-            "Medium" if owner else "High", "RAID Dependency",
-            f"RAID dependency {raid_id}" + (" has no owner." if not owner else " requires tracking."),
-            f"raid_id={raid_id}; owner={owner or 'missing'}; linked_issue={linked_issue or 'none'}",
-            evidence_key, "RAID",
-            f"{'Assign an owner to' if not owner else 'Confirm the delivery date for'} dependency {raid_id}.",
-        ))
+        findings.append(
+            _finding(
+                "Medium" if owner else "High",
+                "RAID Dependency",
+                f"RAID dependency {raid_id}"
+                + (" has no owner." if not owner else " requires tracking."),
+                (
+                    f"raid_id={raid_id}; owner={owner or 'missing'}; "
+                    f"linked_issue={linked_issue or 'none'}"
+                ),
+                evidence_key,
+                "RAID",
+                (
+                    f"{'Assign an owner to' if not owner else 'Confirm the delivery date for'} "
+                    f"dependency {raid_id}."
+                ),
+            )
+        )
 
         if linked_issue:
-            matches = jira[jira["issue_key"].fillna("").astype(str).str.strip().str.lower() == linked_issue.lower()]
-            if not matches.empty and _is(matches.iloc[0].get("priority"), "Critical", "Highest", "High"):
-                findings.append(_finding(
-                    "High", "High-priority Dependency", f"Dependency {raid_id} is linked to high-priority issue {linked_issue}.",
-                    f"raid_id={raid_id}; linked_issue={linked_issue}; jira_priority={_text(matches.iloc[0].get('priority'))}",
-                    evidence_key, "RAID",
-                    f"Review {raid_id} and {linked_issue} together in the next delivery checkpoint.",
-                ))
+            matches = jira[
+                jira["issue_key"].fillna("").astype(str).str.strip().str.lower()
+                == linked_issue.lower()
+            ]
+            if not matches.empty and _is(
+                matches.iloc[0].get("priority"),
+                "Critical",
+                "Highest",
+                "High",
+            ):
+                findings.append(
+                    _finding(
+                        "High",
+                        "High-priority Dependency",
+                        (
+                            f"Dependency {raid_id} is linked to high-priority "
+                            f"issue {linked_issue}."
+                        ),
+                        (
+                            f"raid_id={raid_id}; linked_issue={linked_issue}; "
+                            f"jira_priority={_text(matches.iloc[0].get('priority'))}"
+                        ),
+                        evidence_key,
+                        "RAID",
+                        (
+                            f"Review {raid_id} and {linked_issue} together in "
+                            "the next delivery checkpoint."
+                        ),
+                    )
+                )
 
     return findings

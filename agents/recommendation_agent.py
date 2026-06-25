@@ -18,16 +18,18 @@ def recommend_actions(findings: list[dict], limit: int = 7) -> list[dict]:
         if not action or action.casefold() in seen:
             continue
         seen.add(action.casefold())
-        recommendations.append({
-            "severity": str(finding.get("severity", "Low")).title(),
-            "category": finding.get("category", "General"),
-            "category_group": finding.get("category_group", "Data Quality"),
-            "finding": finding.get("finding", ""),
-            "evidence": finding.get("evidence", ""),
-            "evidence_key": finding.get("evidence_key", ""),
-            "source": finding.get("source", ""),
-            "recommended_action": action,
-        })
+        recommendations.append(
+            {
+                "severity": str(finding.get("severity", "Low")).title(),
+                "category": finding.get("category", "General"),
+                "category_group": finding.get("category_group", "Data Quality"),
+                "finding": finding.get("finding", ""),
+                "evidence": finding.get("evidence", ""),
+                "evidence_key": finding.get("evidence_key", ""),
+                "source": finding.get("source", ""),
+                "recommended_action": action,
+            }
+        )
         if len(recommendations) >= limit:
             break
 

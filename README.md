@@ -10,6 +10,29 @@ It reviews Jira exports, RAID logs and release plans, then converts them into an
 
 Delivery Chief of Staff turns delivery artefacts into executive-ready governance insight in under a minute.
 
+## Judge Quick Start
+
+Run the local demo:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+In the app:
+
+1. Select **At Risk Programme**.
+2. Click **Load Selected Sample Scenario**.
+3. Review the **63/100 At Risk** Delivery Health Score.
+4. Open the Agent Workflow Trace, recommendations and evidence trail.
+5. Download the Markdown executive report.
+
+No OpenAI API key is required for the deterministic demo. To test the optional
+AI-enhanced executive brief, add `OPENAI_API_KEY=your-key-here` to a local
+`.env` file and enable the sidebar checkbox.
+
 ## Problem
 
 Enterprise delivery reviews are often manual, time-consuming and inconsistent.

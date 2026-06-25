@@ -6,6 +6,46 @@ Show how Delivery Chief of Staff converts three familiar delivery artefacts—a 
 
 Position the demo as an agentic operations governance assistant aligned to the Banking Operations / Middle & Back Office Operations use case: shared services operations work orchestration.
 
+## 90-Second Demo Flow
+
+### 0:00–0:15 — Problem and positioning
+
+**Speaker notes:**
+
+“Delivery Chief of Staff is an agentic operations governance assistant for Banking Operations and Middle & Back Office shared services delivery reviews. It turns Jira, RAID and release artefacts into executive-ready insight with human-in-loop controls.”
+
+### 0:15–0:30 — Load the default scenario
+
+**On screen:** Select **At Risk Programme** and click **Load Selected Sample Scenario**.
+
+**Speaker notes:**
+
+“I’m loading the recoverable At Risk scenario. In production use, these would be CSV exports from Jira, the RAID log and the release plan.”
+
+### 0:30–0:55 — Show score and agent workflow
+
+**On screen:** Show validation, Delivery Health Score and Agent Workflow Trace.
+
+**Speaker notes:**
+
+“The deterministic governance engine validates the files, runs the Risk, Dependency, Governance, Recommendation and Executive Summary agents, and produces a 63 out of 100 At Risk score. The score is evidence-based and deduplicated, so overlapping findings do not unfairly punish the same source issue.”
+
+### 0:55–1:15 — Show recommendations and evidence
+
+**On screen:** Show recommended actions and expand **Evidence Trail**.
+
+**Speaker notes:**
+
+“Recommendations are advisory and require delivery leader approval. Every finding links back to a stable evidence key, giving reviewers an audit trail from executive conclusion to Jira issue, RAID item or release milestone.”
+
+### 1:15–1:30 — Download report and close
+
+**On screen:** Click **Download Executive Report**.
+
+**Speaker notes:**
+
+“The output is a downloadable executive report for governance review. The result is faster preparation, consistent control checks and earlier leadership intervention without Jira APIs, databases or cloud deployment.”
+
 ## 3-Minute Flow
 
 ### 0:00–0:20 — Problem

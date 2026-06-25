@@ -24,18 +24,27 @@ def _ordered(findings: list | None) -> list[dict]:
     )
 
 
-def _render_finding_section(findings: list | None, limit: int, severities: set[str] | None = None) -> list[str]:
+def _render_finding_section(
+    findings: list | None,
+    limit: int,
+    severities: set[str] | None = None,
+) -> list[str]:
     rendered = []
     for _, finding in _ordered(findings):
         severity = _text(finding.get("severity"), "Low").title()
         if severities and severity not in severities:
             continue
-        rendered.extend([
-            f"- **Severity:** {severity}",
-            f"  - **Finding:** {_text(finding.get('finding'))}",
-            f"  - **Evidence:** {_text(finding.get('evidence'))}",
-            f"  - **Recommended action:** {_text(finding.get('recommended_action'))}",
-        ])
+        rendered.extend(
+            [
+                f"- **Severity:** {severity}",
+                f"  - **Finding:** {_text(finding.get('finding'))}",
+                f"  - **Evidence:** {_text(finding.get('evidence'))}",
+                (
+                    "  - **Recommended action:** "
+                    f"{_text(finding.get('recommended_action'))}"
+                ),
+            ]
+        )
         if sum(line.startswith("- **Severity:") for line in rendered) >= limit:
             break
     return rendered or ["No findings identified."]
@@ -71,41 +80,53 @@ def build_markdown_report(
     ]
 
     if ai_executive_brief:
-        lines.extend([
-            "## AI-Enhanced Executive Brief",
-            "",
-            _text(ai_executive_brief.get("headline")),
-            "",
-            _text(ai_executive_brief.get("executive_briefing")),
-            "",
-            "**Leadership actions:**",
-            "",
-        ])
+        lines.extend(
+            [
+                "## AI-Enhanced Executive Brief",
+                "",
+                _text(ai_executive_brief.get("headline")),
+                "",
+                _text(ai_executive_brief.get("executive_briefing")),
+                "",
+                "**Leadership actions:**",
+                "",
+            ]
+        )
         leadership_actions = ai_executive_brief.get("leadership_actions")
         if isinstance(leadership_actions, list) and leadership_actions:
             lines.extend(f"- {_text(action)}" for action in leadership_actions)
         else:
             lines.append("- No AI-enhanced leadership actions were generated.")
-        lines.extend([
-            "",
-            f"**Decision required:** {_text(ai_executive_brief.get('decision_required'))}",
-            "",
-            f"**Confidence note:** {_text(ai_executive_brief.get('confidence_note'))}",
-            "",
-        ])
+        lines.extend(
+            [
+                "",
+                (
+                    "**Decision required:** "
+                    f"{_text(ai_executive_brief.get('decision_required'))}"
+                ),
+                "",
+                (
+                    "**Confidence note:** "
+                    f"{_text(ai_executive_brief.get('confidence_note'))}"
+                ),
+                "",
+            ]
+        )
 
-    lines.extend([
-        "## Delivery Health Score",
-        "",
-        f"Delivery Health Score: {_text(scoring_result.get('score'), 'N/A')}/100",
-        "",
-        f"Status: {_text(scoring_result.get('status'), 'Unknown')}",
-        "",
-        f"Summary: {_text(scoring_result.get('status_summary'))}",
-        "",
-        "## Leadership Attention Required",
-        "",
-    ])
+    lines.extend(
+        [
+            "## Delivery Health Score",
+            "",
+            f"Delivery Health Score: {_text(scoring_result.get('score'), 'N/A')}/100",
+            "",
+            f"Status: {_text(scoring_result.get('status'), 'Unknown')}",
+            "",
+            f"Summary: {_text(scoring_result.get('status_summary'))}",
+            "",
+            "## Leadership Attention Required",
+            "",
+        ]
+    )
 
     leadership_attention = executive_summary.get("leadership_attention")
     if isinstance(leadership_attention, list) and leadership_attention:
@@ -126,27 +147,41 @@ def build_markdown_report(
     valid_recommendations = [item for item in (recommendations or []) if isinstance(item, dict)]
     if valid_recommendations:
         for recommendation in valid_recommendations[:7]:
-            lines.extend([
-                f"- **Severity:** {_text(recommendation.get('severity'), 'Low').title()}",
-                f"  - **Source:** {_text(recommendation.get('source'))}",
-                f"  - **Evidence key:** {_text(recommendation.get('evidence_key'))}",
-                f"  - **Recommended action:** {_text(recommendation.get('recommended_action'))}",
-            ])
+            lines.extend(
+                [
+                    (
+                        "- **Severity:** "
+                        f"{_text(recommendation.get('severity'), 'Low').title()}"
+                    ),
+                    f"  - **Source:** {_text(recommendation.get('source'))}",
+                    f"  - **Evidence key:** {_text(recommendation.get('evidence_key'))}",
+                    (
+                        "  - **Recommended action:** "
+                        f"{_text(recommendation.get('recommended_action'))}"
+                    ),
+                ]
+            )
     else:
         lines.append("No recommended actions were generated.")
 
     lines.extend(["", "## Score Deductions", ""])
     deductions = scoring_result.get("deductions")
-    valid_deductions = [item for item in deductions if isinstance(item, dict)] if isinstance(deductions, list) else []
+    valid_deductions = (
+        [item for item in deductions if isinstance(item, dict)]
+        if isinstance(deductions, list)
+        else []
+    )
     if valid_deductions:
         for deduction in valid_deductions:
-            lines.extend([
-                f"- **Severity:** {_text(deduction.get('severity'), 'Low').title()}",
-                f"  - **Category group:** {_text(deduction.get('category_group'))}",
-                f"  - **Points:** {_text(deduction.get('points'), '0')}",
-                f"  - **Reason:** {_text(deduction.get('reason'))}",
-                f"  - **Evidence key:** {_text(deduction.get('evidence_key'))}",
-            ])
+            lines.extend(
+                [
+                    f"- **Severity:** {_text(deduction.get('severity'), 'Low').title()}",
+                    f"  - **Category group:** {_text(deduction.get('category_group'))}",
+                    f"  - **Points:** {_text(deduction.get('points'), '0')}",
+                    f"  - **Reason:** {_text(deduction.get('reason'))}",
+                    f"  - **Evidence key:** {_text(deduction.get('evidence_key'))}",
+                ]
+            )
     else:
         lines.append("No score deductions were applied.")
 
@@ -166,20 +201,29 @@ def build_markdown_report(
         lines.append("No category caps were reached.")
 
     lines.extend(["", "## Evidence and Audit Trail", ""])
-    all_findings = list(risk_findings or []) + list(dependency_findings or []) + list(governance_findings or [])
+    all_findings = (
+        list(risk_findings or [])
+        + list(dependency_findings or [])
+        + list(governance_findings or [])
+    )
     valid_findings = [item for item in all_findings if isinstance(item, dict)]
     if valid_findings:
         for finding in valid_findings:
-            lines.extend([
-                f"- **Source:** {_text(finding.get('source'))}",
-                f"  - **Evidence key:** {_text(finding.get('evidence_key'))}",
-                f"  - **Severity:** {_text(finding.get('severity'), 'Low').title()}",
-                f"  - **Category:** {_text(finding.get('category'))}",
-                f"  - **Category group:** {_text(finding.get('category_group'))}",
-                f"  - **Finding:** {_text(finding.get('finding'))}",
-                f"  - **Evidence:** {_text(finding.get('evidence'))}",
-                f"  - **Recommended action:** {_text(finding.get('recommended_action'))}",
-            ])
+            lines.extend(
+                [
+                    f"- **Source:** {_text(finding.get('source'))}",
+                    f"  - **Evidence key:** {_text(finding.get('evidence_key'))}",
+                    f"  - **Severity:** {_text(finding.get('severity'), 'Low').title()}",
+                    f"  - **Category:** {_text(finding.get('category'))}",
+                    f"  - **Category group:** {_text(finding.get('category_group'))}",
+                    f"  - **Finding:** {_text(finding.get('finding'))}",
+                    f"  - **Evidence:** {_text(finding.get('evidence'))}",
+                    (
+                        "  - **Recommended action:** "
+                        f"{_text(finding.get('recommended_action'))}"
+                    ),
+                ]
+            )
     else:
         lines.append("No evidence findings were generated.")
 

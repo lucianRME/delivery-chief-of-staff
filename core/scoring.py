@@ -39,11 +39,18 @@ def _deduplicate_findings(findings: list[dict]) -> list[dict]:
     selected = {}
     selected_weights = {}
     for index, finding in enumerate(findings):
-        evidence_key = str(finding.get("evidence_key", "")).strip() or f"finding:{index}"
+        evidence_key = (
+            str(finding.get("evidence_key", "")).strip()
+            or f"finding:{index}"
+        )
         severity = str(finding.get("severity", "Low")).title()
         weight = SEVERITY_DEDUCTIONS.get(severity, 0)
         if evidence_key not in selected or weight > selected_weights[evidence_key]:
-            selected[evidence_key] = {**finding, "evidence_key": evidence_key, "severity": severity}
+            selected[evidence_key] = {
+                **finding,
+                "evidence_key": evidence_key,
+                "severity": severity,
+            }
             selected_weights[evidence_key] = weight
     return list(selected.values())
 
@@ -68,13 +75,15 @@ def calculate_health_score(findings: list[dict]) -> dict:
         if category_group not in CATEGORY_CAPS:
             category_group = "Data Quality"
         raw_category_totals[category_group] += points
-        candidates.append({
-            "evidence_key": finding["evidence_key"],
-            "severity": severity,
-            "category_group": category_group,
-            "points": points,
-            "reason": finding.get("finding", "Unspecified finding"),
-        })
+        candidates.append(
+            {
+                "evidence_key": finding["evidence_key"],
+                "severity": severity,
+                "category_group": category_group,
+                "points": points,
+                "reason": finding.get("finding", "Unspecified finding"),
+            }
+        )
 
     category_totals = {group: 0 for group in CATEGORY_CAPS}
     capped_categories = [

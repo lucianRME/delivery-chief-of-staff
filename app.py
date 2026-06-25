@@ -27,8 +27,14 @@ SCENARIO_NOTES = {
     "critical": "Scenario: Severe delivery risk requiring immediate executive intervention.",
 }
 DISPLAY_COLUMNS = [
-    "severity", "category", "category_group", "finding", "evidence",
-    "evidence_key", "source", "recommended_action",
+    "severity",
+    "category",
+    "category_group",
+    "finding",
+    "evidence",
+    "evidence_key",
+    "source",
+    "recommended_action",
 ]
 SEVERITY_PRIORITY = {"Critical": 0, "High": 1, "Medium": 2, "Low": 3}
 
@@ -134,7 +140,11 @@ if not all(result["valid"] for result in validation_results.values()):
 
 risk_findings = analyze_risks(dataframes["jira"], dataframes["raid"], dataframes["release"])
 dependency_findings = analyze_dependencies(dataframes["jira"], dataframes["raid"])
-governance_findings = analyze_governance(dataframes["jira"], dataframes["raid"], dataframes["release"])
+governance_findings = analyze_governance(
+    dataframes["jira"],
+    dataframes["raid"],
+    dataframes["release"],
+)
 all_findings = risk_findings + dependency_findings + governance_findings
 score_result = calculate_health_score(all_findings)
 recommendations = recommend_actions(all_findings)
@@ -170,7 +180,8 @@ status_column.metric("Health Status", score_result["status"])
 finding_column.metric("Total Findings", len(all_findings))
 action_column.metric("Priority Actions", len(recommendations))
 st.caption(
-    "The score uses the highest-severity finding for each evidence item, then applies category caps."
+    "The score uses the highest-severity finding for each evidence item, then "
+    "applies category caps."
 )
 
 if score_result["status"] == "Critical":
@@ -209,7 +220,10 @@ if enable_ai_brief:
     else:
         st.warning(f"AI-enhanced brief unavailable: {ai_brief_result.get('error')}")
 
-st.write("Download an evidence-backed executive report for governance review or leadership discussion.")
+st.write(
+    "Download an evidence-backed executive report for governance review or "
+    "leadership discussion."
+)
 st.download_button(
     label="Download Executive Report",
     data=markdown_report,
@@ -276,14 +290,20 @@ agent_trace = [
         "Purpose": "Prioritise distinct, evidence-backed actions",
         "Inputs analysed": "All agent findings",
         "Outputs generated": f"{len(recommendations)} recommendations",
-        "Highest-priority concern": highest_priority_concern(recommendations, "recommended_action"),
+        "Highest-priority concern": highest_priority_concern(
+            recommendations,
+            "recommended_action",
+        ),
     },
     {
         "Agent": "Executive Summary Agent",
         "Purpose": "Convert scored evidence into a leadership narrative",
         "Inputs analysed": "Health score, findings, category totals",
         "Outputs generated": "1 executive summary",
-        "Highest-priority concern": executive_summary.get("headline", "No material concern identified"),
+        "Highest-priority concern": executive_summary.get(
+            "headline",
+            "No material concern identified",
+        ),
     },
 ]
 st.dataframe(pd.DataFrame(agent_trace), width="stretch", hide_index=True)
@@ -320,8 +340,15 @@ display_findings("Governance Findings", governance_findings)
 display_findings("Recommended Actions", recommendations)
 
 with st.expander("Evidence Trail"):
-    st.write("All findings retained for traceability, including findings deduplicated from scoring.")
+    st.write(
+        "All findings retained for traceability, including findings deduplicated "
+        "from scoring."
+    )
     if all_findings:
-        st.dataframe(pd.DataFrame(all_findings)[DISPLAY_COLUMNS], width="stretch", hide_index=True)
+        st.dataframe(
+            pd.DataFrame(all_findings)[DISPLAY_COLUMNS],
+            width="stretch",
+            hide_index=True,
+        )
     else:
         st.success("No findings were generated from the supplied evidence.")

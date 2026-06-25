@@ -81,7 +81,10 @@ def _ordered(items: list[dict] | None) -> list[dict]:
         for _, item in sorted(
             enumerate(valid),
             key=lambda pair: (
-                SEVERITY_PRIORITY.get(_safe_text(pair[1].get("severity"), "Low").title(), 4),
+                SEVERITY_PRIORITY.get(
+                    _safe_text(pair[1].get("severity"), "Low").title(),
+                    4,
+                ),
                 pair[0],
             ),
         )
@@ -109,7 +112,10 @@ def _build_payload(
     """Build the minimal evidence-backed payload sent to OpenAI."""
     scoring_result = scoring_result if isinstance(scoring_result, dict) else {}
     top_findings = [_summarise_finding(item) for item in _ordered(all_findings)[:10]]
-    top_recommendations = [_summarise_finding(item) for item in _ordered(recommendations)[:7]]
+    top_recommendations = [
+        _summarise_finding(item)
+        for item in _ordered(recommendations)[:7]
+    ]
     evidence_keys = sorted(
         {
             item["evidence_key"]
@@ -205,7 +211,11 @@ def generate_ai_executive_brief(
         pass
 
     if not _configured_api_key():
-        return {"enabled": False, "brief": None, "error": "OPENAI_API_KEY not configured"}
+        return {
+            "enabled": False,
+            "brief": None,
+            "error": "OPENAI_API_KEY not configured",
+        }
 
     try:
         from openai import OpenAI

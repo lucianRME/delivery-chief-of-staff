@@ -19,7 +19,10 @@ def generate_executive_summary(score_result: dict, findings: list[dict]) -> dict
     category_totals = score_result.get("category_totals", {})
     top_groups = [
         group
-        for group, points in sorted(category_totals.items(), key=lambda item: (-item[1], item[0]))
+        for group, points in sorted(
+            category_totals.items(),
+            key=lambda item: (-item[1], item[0]),
+        )
         if points > 0
     ][:3]
 
@@ -58,10 +61,14 @@ def generate_executive_summary(score_result: dict, findings: list[dict]) -> dict
             break
 
     if status == "Healthy":
-        decision_required = "Leadership should maintain current commitments and monitor the identified watch items."
+        decision_required = (
+            "Leadership should maintain current commitments and monitor the "
+            "identified watch items."
+        )
     else:
         decision_required = (
-            "Leadership should confirm ownership for the top blockers and agree whether release scope or date needs adjustment."
+            "Leadership should confirm ownership for the top blockers and agree "
+            "whether release scope or date needs adjustment."
         )
 
     return {
