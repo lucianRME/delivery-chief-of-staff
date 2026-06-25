@@ -205,7 +205,7 @@ if enable_ai_brief:
         st.info(f"Decision required: {ai_executive_brief.get('decision_required', '')}")
         st.caption(ai_executive_brief.get("confidence_note", ""))
     elif ai_brief_result.get("error") == "OPENAI_API_KEY not configured":
-        st.info("AI-enhanced brief unavailable: OPENAI_API_KEY not configured.")
+        st.warning("AI-enhanced brief unavailable: OPENAI_API_KEY not configured.")
     else:
         st.warning(f"AI-enhanced brief unavailable: {ai_brief_result.get('error')}")
 

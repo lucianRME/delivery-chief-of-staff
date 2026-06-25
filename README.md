@@ -192,14 +192,19 @@ OpenAI can optionally generate a polished executive brief from the existing evid
 * OpenAI does not invent risks, evidence or unsupported actions.
 * Delivery leaders remain accountable for human-in-loop review and approval.
 
-To enable the optional AI-enhanced executive brief, set `OPENAI_API_KEY` in your environment and use the sidebar checkbox in the app:
+To enable the optional AI-enhanced executive brief, put your key in a local `.env` file:
 
 ```bash
-export OPENAI_API_KEY="your-key-here"
+OPENAI_API_KEY=your-key-here
+```
+
+Then run:
+
+```bash
 streamlit run app.py
 ```
 
-You can also place `OPENAI_API_KEY` in a local `.env` file. Do not commit `.env` or API keys.
+Do not commit `.env` or API keys. The `.env` file is ignored by git.
 
 ## Demo scenarios
 
@@ -236,6 +241,32 @@ streamlit run app.py
 ```
 
 Open the URL printed by Streamlit.
+
+### Run without OpenAI
+
+No API key is required for the deterministic dashboard, scoring, findings, recommendations or Markdown report.
+
+```bash
+streamlit run app.py
+```
+
+Leave **Enable AI-enhanced executive brief** unchecked in the sidebar.
+
+### Run with optional OpenAI narrative enhancement
+
+Create a local `.env` file and add:
+
+```bash
+OPENAI_API_KEY=your-key-here
+```
+
+Then run:
+
+```bash
+streamlit run app.py
+```
+
+Tick **Enable AI-enhanced executive brief** in the sidebar. OpenAI is used only for narrative enhancement and does not change the deterministic score, findings or evidence keys.
 
 ## Recommended demo flow
 

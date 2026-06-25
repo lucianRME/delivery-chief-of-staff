@@ -19,6 +19,11 @@ CONFIDENCE_NOTE = (
     "This brief is generated from deterministic evidence-backed findings and "
     "does not alter the underlying score."
 )
+PLACEHOLDER_API_KEYS = {
+    "your-key-here",
+    "your-openai-api-key-here",
+    "sk-your-real-key-here",
+}
 
 AI_BRIEF_SCHEMA = {
     "type": "object",
@@ -58,6 +63,14 @@ def _safe_error_message(error: Exception) -> str:
     if api_key:
         message = message.replace(api_key, "[redacted]")
     return message[:300]
+
+
+def _configured_api_key() -> str | None:
+    """Return a real configured API key, ignoring local template placeholders."""
+    api_key = _safe_text(os.getenv("OPENAI_API_KEY"))
+    if not api_key or api_key in PLACEHOLDER_API_KEYS:
+        return None
+    return api_key
 
 
 def _ordered(items: list[dict] | None) -> list[dict]:
@@ -191,7 +204,7 @@ def generate_ai_executive_brief(
     except Exception:
         pass
 
-    if not os.getenv("OPENAI_API_KEY"):
+    if not _configured_api_key():
         return {"enabled": False, "brief": None, "error": "OPENAI_API_KEY not configured"}
 
     try:
@@ -209,6 +222,7 @@ def generate_ai_executive_brief(
 
     system_prompt = (
         "You are an optional narrative agent for Delivery Chief of Staff. "
+        "You are generating an executive narrative only. "
         "The core governance assessment is deterministic and auditable. "
         "OpenAI is used only as an optional narrative enhancement over "
         "deterministic evidence-backed findings. Return JSON only."
@@ -221,15 +235,18 @@ def generate_ai_executive_brief(
         "recommendations and evidence keys.\n"
         "- Do not invent risks.\n"
         "- Do not invent evidence.\n"
+        "- Do not invent evidence keys.\n"
         "- Do not change the Delivery Health Score.\n"
         "- Do not change the status.\n"
+        "- Do not change score deductions.\n"
         "- Do not create unsupported recommendations.\n"
+        "- Do not claim an action is approved or completed.\n"
+        "- Preserve human-in-loop governance.\n"
+        "- Recommendations require delivery leader review and approval.\n"
         "- Mention only the top themes.\n"
         "- Keep the tone executive, concise and action-oriented.\n"
-        "- Frame the brief for banking operations governance and shared services "
-        "delivery review.\n"
-        "- Preserve human-in-loop governance: recommendations require leadership "
-        "review and approval.\n"
+        "- Frame the brief for Banking Operations / Middle & Back Office "
+        "Operations shared services delivery review.\n"
         "- Return structured JSON matching the expected fields.\n\n"
         f"Evidence-backed payload:\n{json.dumps(payload, indent=2, default=str)}"
     )
