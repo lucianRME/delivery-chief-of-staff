@@ -2,9 +2,11 @@
 
 ## Demo Objective
 
-Show how Delivery Chief of Staff converts three familiar delivery artefacts—a Jira export CSV, RAID log CSV, and release plan CSV—into executive-ready governance insight in under a minute.
+Show how Delivery Chief of Staff converts three familiar delivery artefacts—a Jira export CSV, RAID
+log CSV, and release plan CSV—into executive-ready governance insight in under a minute.
 
-Position the demo as an agentic operations governance assistant aligned to the Banking Operations / Middle & Back Office Operations use case: shared services operations work orchestration.
+Position the demo as an agentic operations governance assistant aligned to the Banking Operations /
+Middle & Back Office Operations use case: shared services operations work orchestration.
 
 ## 90-Second Demo Flow
 
@@ -12,7 +14,9 @@ Position the demo as an agentic operations governance assistant aligned to the B
 
 **Speaker notes:**
 
-“Delivery Chief of Staff is an agentic operations governance assistant for Banking Operations and Middle & Back Office shared services delivery reviews. It turns Jira, RAID and release artefacts into executive-ready insight with human-in-loop controls.”
+“Delivery Chief of Staff is an agentic operations governance assistant for Banking Operations and
+Middle & Back Office shared services delivery reviews. It turns Jira, RAID and release artefacts
+into executive-ready insight with human-in-loop controls.”
 
 ### 0:15–0:30 — Load the default scenario
 
@@ -20,7 +24,8 @@ Position the demo as an agentic operations governance assistant aligned to the B
 
 **Speaker notes:**
 
-“I’m loading the recoverable At Risk scenario. In production use, these would be CSV exports from Jira, the RAID log and the release plan.”
+“I’m loading the recoverable At Risk scenario. In production use, these would be CSV exports from
+Jira, the RAID log and the release plan.”
 
 ### 0:30–0:55 — Show score and agent workflow
 
@@ -28,7 +33,10 @@ Position the demo as an agentic operations governance assistant aligned to the B
 
 **Speaker notes:**
 
-“The deterministic governance engine validates the files, runs the Risk, Dependency, Governance, Recommendation and Executive Summary agents, and produces a 63 out of 100 At Risk score. The score is evidence-based and deduplicated, so overlapping findings do not unfairly punish the same source issue.”
+“The deterministic governance engine validates the files, runs the Risk, Dependency, Governance,
+Recommendation and Executive Summary agents, and produces a 63 out of 100 At Risk score. The score
+is evidence-based and deduplicated, so overlapping findings do not unfairly punish the same source
+issue.”
 
 ### 0:55–1:15 — Show recommendations and evidence
 
@@ -36,7 +44,9 @@ Position the demo as an agentic operations governance assistant aligned to the B
 
 **Speaker notes:**
 
-“Recommendations are advisory and require delivery leader approval. Every finding links back to a stable evidence key, giving reviewers an audit trail from executive conclusion to Jira issue, RAID item or release milestone.”
+“Recommendations are advisory and require delivery leader approval. Every finding links back to a
+stable evidence key, giving reviewers an audit trail from executive conclusion to Jira issue, RAID
+item or release milestone.”
 
 ### 1:15–1:30 — Download report and close
 
@@ -44,7 +54,9 @@ Position the demo as an agentic operations governance assistant aligned to the B
 
 **Speaker notes:**
 
-“The output is a downloadable executive report for governance review. The result is faster preparation, consistent control checks and earlier leadership intervention without Jira APIs, databases or cloud deployment.”
+“The output is a downloadable executive report for governance review. The result is faster
+preparation, consistent control checks and earlier leadership intervention without Jira APIs,
+databases or cloud deployment.”
 
 ## 3-Minute Flow
 
@@ -54,11 +66,16 @@ Position the demo as an agentic operations governance assistant aligned to the B
 
 **Speaker notes:**
 
-“Today I’m demonstrating Delivery Chief of Staff as an agentic operations governance assistant aligned to the Banking Operations / Middle & Back Office Operations use case: shared services operations work orchestration.”
+“Today I’m demonstrating Delivery Chief of Staff as an agentic operations governance assistant
+aligned to the Banking Operations / Middle & Back Office Operations use case: shared services
+operations work orchestration.”
 
-“Enterprise delivery leaders rarely lack data. The problem is that the data is spread across Jira exports, RAID logs, and release plans. Programme teams spend hours reconciling those artefacts before leadership can understand what is at risk, what needs a decision, and who must act.”
+“Enterprise delivery leaders rarely lack data. The problem is that the data is spread across Jira
+exports, RAID logs, and release plans. Programme teams spend hours reconciling those artefacts
+before leadership can understand what is at risk, what needs a decision, and who must act.”
 
-“This maps to the official value chain: work intake, control checks, exception handling, human-in-loop recommendations, and evidence-backed reporting.”
+“This maps to the official value chain: work intake, control checks, exception handling,
+human-in-loop recommendations, and evidence-backed reporting.”
 
 ### 0:20–0:40 — Solution Overview
 
@@ -66,7 +83,10 @@ Position the demo as an agentic operations governance assistant aligned to the B
 
 **Speaker notes:**
 
-“Delivery Chief of Staff turns those existing artefacts into a consistent governance assessment. The Risk Agent identifies delivery exposure, the Dependency Agent traces blockers, and the Governance Agent checks ownership and release controls. The Recommendation Agent prioritises action, while the Executive Summary Agent converts the analysis into leadership-ready language.”
+“Delivery Chief of Staff turns those existing artefacts into a consistent governance assessment. The
+Risk Agent identifies delivery exposure, the Dependency Agent traces blockers, and the Governance
+Agent checks ownership and release controls. The Recommendation Agent prioritises action, while the
+Executive Summary Agent converts the analysis into leadership-ready language.”
 
 ### 0:40–1:10 — Load At Risk Scenario
 
@@ -74,31 +94,46 @@ Position the demo as an agentic operations governance assistant aligned to the B
 
 **Speaker notes:**
 
-“For this demo, I’ll load an enterprise programme that is under pressure but recoverable. In a real review, the user would upload a Jira export CSV, RAID log CSV, and release plan CSV. The app validates each dataset, runs the analysis automatically, and returns a result locally without a database or external service.”
+“For this demo, I’ll load an enterprise programme that is under pressure but recoverable. In a real
+review, the user would upload a Jira export CSV, RAID log CSV, and release plan CSV. The app
+validates each dataset, runs the analysis automatically, and returns a result locally without a
+database or external service.”
 
-“All three files pass validation. The programme receives a Delivery Health Score of 63 out of 100 and an At Risk status.”
+“All three files pass validation. The programme receives a Delivery Health Score of 63 out of 100
+and an At Risk status.”
 
 ### 1:10–1:50 — Walk Through Dashboard
 
-**On screen:** Show the score, status, executive summary, leadership attention, Agent Workflow Trace, and score breakdown.
+**On screen:** Show the score, status, executive summary, leadership attention, Agent Workflow
+Trace, and score breakdown.
 
 **Speaker notes:**
 
-“The score is not a black box. Findings are deduplicated by evidence item, so one Jira issue is not repeatedly penalised for being blocked, high priority, and dependent. Category caps prevent one type of problem from overwhelming the assessment.”
+“The score is not a black box. Findings are deduplicated by evidence item, so one Jira issue is not
+repeatedly penalised for being blocked, high priority, and dependent. Category caps prevent one type
+of problem from overwhelming the assessment.”
 
-“The Agent Workflow Trace shows the specialist agents that ran, what each analysed, and the highest-priority concern produced by each step.”
+“The Agent Workflow Trace shows the specialist agents that ran, what each analysed, and the
+highest-priority concern produced by each step.”
 
-“The executive summary focuses on the top themes: delivery risk, dependencies, and release readiness. Leadership gets a clear decision prompt rather than a long list of project-management observations. The deduction tables show exactly how the score was calculated.”
+“The executive summary focuses on the top themes: delivery risk, dependencies, and release
+readiness. Leadership gets a clear decision prompt rather than a long list of project-management
+observations. The deduction tables show exactly how the score was calculated.”
 
 ### 1:50–2:20 — Show Evidence and Recommendations
 
-**On screen:** Review Top Risks, Dependency Findings, Governance Findings, Recommended Actions, and expand **Evidence Trail**.
+**On screen:** Review Top Risks, Dependency Findings, Governance Findings, Recommended Actions, and
+expand **Evidence Trail**.
 
 **Speaker notes:**
 
-“Every finding links to stable source evidence, such as a Jira issue key, RAID identifier, or release milestone. The Recommendation Agent prioritises no more than seven actions, with Critical and High findings first.”
+“Every finding links to stable source evidence, such as a Jira issue key, RAID identifier, or
+release milestone. The Recommendation Agent prioritises no more than seven actions, with Critical
+and High findings first.”
 
-“The evidence and audit trail retains every finding, including items deduplicated from scoring. A delivery leader can move from the executive conclusion back to the underlying record without losing traceability.”
+“The evidence and audit trail retains every finding, including items deduplicated from scoring. A
+delivery leader can move from the executive conclusion back to the underlying record without losing
+traceability.”
 
 ### 2:20–2:40 — Download Executive Report
 
@@ -106,7 +141,9 @@ Position the demo as an agentic operations governance assistant aligned to the B
 
 **Speaker notes:**
 
-“The same analysis is available as a downloadable executive report. It includes the summary, score, leadership actions, deductions, recommendations, and complete audit trail. It is ready for a governance review, leadership discussion, or inclusion in existing reporting workflows.”
+“The same analysis is available as a downloadable executive report. It includes the summary, score,
+leadership actions, deductions, recommendations, and complete audit trail. It is ready for a
+governance review, leadership discussion, or inclusion in existing reporting workflows.”
 
 ### 2:40–3:00 — Business Impact and Close
 
@@ -114,4 +151,7 @@ Position the demo as an agentic operations governance assistant aligned to the B
 
 **Speaker notes:**
 
-“This reduces review preparation from hours to minutes, applies governance checks consistently, and surfaces ownership or mitigation gaps before they become missed commitments. Delivery Chief of Staff does not replace delivery leadership—it gives leaders a faster, evidence-backed basis for intervention. Three files in; an executive decision brief out.”
+“This reduces review preparation from hours to minutes, applies governance checks consistently, and
+surfaces ownership or mitigation gaps before they become missed commitments. Delivery Chief of Staff
+does not replace delivery leadership—it gives leaders a faster, evidence-backed basis for
+intervention. Three files in; an executive decision brief out.”

@@ -12,9 +12,13 @@
 
 ## Why Delivery Chief of Staff Fits
 
-Delivery governance in banking operations and shared services requires repeatable intake review, control checks, exception handling, leadership routing, and evidence-backed reporting.
+Delivery governance in banking operations and shared services requires repeatable intake review,
+control checks, exception handling, leadership routing, and evidence-backed reporting.
 
-Delivery Chief of Staff fits this use case by converting Jira, RAID, and release artefacts into a structured governance workflow. It validates the supplied artefacts, identifies delivery exceptions, checks control gaps, proposes human-in-loop actions, and produces an executive-ready report with an evidence trail.
+Delivery Chief of Staff fits this use case by converting Jira, RAID, and release artefacts into a
+structured governance workflow. It validates the supplied artefacts, identifies delivery exceptions,
+checks control gaps, proposes human-in-loop actions, and produces an executive-ready report with an
+evidence trail.
 
 ## Value Chain Mapping
 
@@ -46,26 +50,38 @@ Delivery Chief of Staff fits this use case by converting Jira, RAID, and release
 - Downloadable executive report.
 - Local deterministic execution.
 - No OpenAI dependency required for the normal demo flow.
-- Optional OpenAI narrative enhancement can improve executive wording over deterministic evidence-backed findings without changing the Delivery Health Score, findings, or evidence keys.
+- Optional OpenAI narrative enhancement can improve executive wording over deterministic
+  evidence-backed findings without changing the Delivery Health Score, findings, or evidence keys.
 
 ## Guardrails for Banking Operations
 
-The MVP is appropriate for banking operations and shared services governance because it preserves human oversight while improving review speed and consistency.
+The MVP is appropriate for banking operations and shared services governance because it preserves
+human oversight while improving review speed and consistency.
 
-- It supports human-in-loop controls: the system recommends actions but does not approve delivery or release decisions.
-- It preserves evidence and audit trail through stable evidence keys linked to Jira, RAID and release artefacts.
-- It avoids autonomous execution across Jira, release tools, banking systems or governance workflows.
+- It supports human-in-loop controls: the system recommends actions but does not approve delivery or
+  release decisions.
+- It preserves evidence and audit trail through stable evidence keys linked to Jira, RAID and
+  release artefacts.
+- It avoids autonomous execution across Jira, release tools, banking systems or governance
+  workflows.
 - It keeps governance decisions with accountable delivery leaders.
 - It uses deterministic scoring for repeatability, explainability and review confidence.
-- It uses OpenAI only as an optional narrative layer if enabled; OpenAI does not change the source-of-truth score, findings, deductions or evidence keys.
+- It uses OpenAI only as an optional narrative layer if enabled; OpenAI does not change the
+  source-of-truth score, findings, deductions or evidence keys.
 
 ## Why This Can Win
 
-- **Enterprise relevance:** banking delivery governance and shared services reviews are recurring operational needs.
-- **Official use-case alignment:** the MVP maps directly to operations work orchestration with human-in-loop controls.
-- **Measurable operational impact:** review preparation time, detected exceptions, ownership gaps, mitigation gaps, and release-readiness gaps can be tracked.
+- **Enterprise relevance:** banking delivery governance and shared services reviews are recurring
+  operational needs.
+- **Official use-case alignment:** the MVP maps directly to operations work orchestration with
+  human-in-loop controls.
+- **Measurable operational impact:** review preparation time, detected exceptions, ownership gaps,
+  mitigation gaps, and release-readiness gaps can be tracked.
 - **Clear agentic workflow:** each agent has a distinct governance responsibility.
-- **Human-in-loop governance:** leaders retain accountability for decisions, escalations, and approvals.
+- **Human-in-loop governance:** leaders retain accountability for decisions, escalations, and
+  approvals.
 - **Auditability:** every finding links to source evidence through stable evidence keys.
-- **Demo reliability:** the app runs locally with deterministic behaviour and no external service dependency.
-- **Realistic 10-day implementation:** the MVP proves the workflow with simple, inspectable Python, Streamlit, and Pandas.
+- **Demo reliability:** the app runs locally with deterministic behaviour and no external service
+  dependency.
+- **Realistic 10-day implementation:** the MVP proves the workflow with simple, inspectable Python,
+  Streamlit, and Pandas.

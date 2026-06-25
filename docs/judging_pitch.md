@@ -2,17 +2,23 @@
 
 ## One-Line Pitch
 
-Delivery Chief of Staff is an agentic AI workflow that turns delivery artefacts into executive-ready governance insight.
+Delivery Chief of Staff is an agentic AI workflow that turns delivery artefacts into executive-ready
+governance insight.
 
 ## Problem
 
-Enterprise delivery reviews are manual, inconsistent, and time-consuming. Programme teams reconcile Jira exports, RAID logs, and release plans by hand, often under deadline pressure. Important signals can be buried across artefacts, governance checks vary between reviewers, and leadership receives information after the window for low-cost intervention has narrowed.
+Enterprise delivery reviews are manual, inconsistent, and time-consuming. Programme teams reconcile
+Jira exports, RAID logs, and release plans by hand, often under deadline pressure. Important signals
+can be buried across artefacts, governance checks vary between reviewers, and leadership receives
+information after the window for low-cost intervention has narrowed.
 
-The result is avoidable preparation effort, uneven assurance, and decisions made without a clear line from executive conclusion to source evidence.
+The result is avoidable preparation effort, uneven assurance, and decisions made without a clear
+line from executive conclusion to source evidence.
 
 ## Solution
 
-Delivery Chief of Staff is a local Streamlit application that ingests Jira, RAID, and release CSVs and automatically produces:
+Delivery Chief of Staff is a local Streamlit application that ingests Jira, RAID, and release CSVs
+and automatically produces:
 
 - A deduplicated, explainable Delivery Health Score.
 - Prioritised risk, dependency, governance, and release-readiness findings.
@@ -20,7 +26,8 @@ Delivery Chief of Staff is a local Streamlit application that ingests Jira, RAID
 - A concise executive summary and leadership decision prompt.
 - A downloadable Markdown report with a complete audit trail.
 
-The MVP uses transparent, deterministic rules. It is reliable in a live demo, easy to inspect, and the core governance assessment does not depend on cloud infrastructure or external APIs.
+The MVP uses transparent, deterministic rules. It is reliable in a live demo, easy to inspect, and
+the core governance assessment does not depend on cloud infrastructure or external APIs.
 
 ## Official Use Case Alignment
 
@@ -42,19 +49,26 @@ It maps to operations work orchestration because it:
 - Recommends human-in-loop actions.
 - Produces reporting and evidence.
 
-Delivery Chief of Staff is not a generic project dashboard. It is an agentic operations governance workflow for banking delivery reviews, designed to improve the consistency, speed and auditability of shared services delivery governance.
+Delivery Chief of Staff is not a generic project dashboard. It is an agentic operations governance
+workflow for banking delivery reviews, designed to improve the consistency, speed and auditability
+of shared services delivery governance.
 
 ## Why Agentic AI
 
 The workflow separates delivery reasoning into specialised agents with distinct responsibilities:
 
-- **Risk Agent:** detects blocked work, high-priority exposure, material RAID items, and at-risk milestones.
-- **Dependency Agent:** identifies dependencies, blockers, missing dependency ownership, and links to priority work.
-- **Governance Agent:** reviews ownership, mitigations, acceptance criteria, approvals, and release controls.
+- **Risk Agent:** detects blocked work, high-priority exposure, material RAID items, and at-risk
+  milestones.
+- **Dependency Agent:** identifies dependencies, blockers, missing dependency ownership, and links
+  to priority work.
+- **Governance Agent:** reviews ownership, mitigations, acceptance criteria, approvals, and release
+  controls.
 - **Recommendation Agent:** deduplicates and prioritises the actions leadership should take next.
-- **Executive Summary Agent:** converts the scored evidence into a concise, deterministic leadership narrative.
+- **Executive Summary Agent:** converts the scored evidence into a concise, deterministic leadership
+  narrative.
 
-This separation makes the analysis modular, explainable, and extensible. Each agent contributes a bounded form of reasoning while retaining a common evidence contract.
+This separation makes the analysis modular, explainable, and extensible. Each agent contributes a
+bounded form of reasoning while retaining a common evidence contract.
 
 ## Business Value
 
@@ -66,19 +80,25 @@ This separation makes the analysis modular, explainable, and extensible. Each ag
 
 ## Why This Can Win
 
-- **Enterprise relevance:** delivery assurance and governance are recurring problems across large organisations.
-- **Measurable impact:** preparation time, detected gaps, and decision turnaround can all be tracked.
+- **Enterprise relevance:** delivery assurance and governance are recurring problems across large
+  organisations.
+- **Measurable impact:** preparation time, detected gaps, and decision turnaround can all be
+  tracked.
 - **Realistic implementation:** the MVP works with the CSV exports teams already use.
-- **Local demo reliability:** no network, cloud service, or external API is required for the deterministic core flow.
+- **Local demo reliability:** no network, cloud service, or external API is required for the
+  deterministic core flow.
 - **Low technical risk:** the architecture is simple, deterministic, and easy to test.
-- **Strong executive storytelling:** the demo moves from fragmented delivery data to a decision-ready report in under a minute.
+- **Strong executive storytelling:** the demo moves from fragmented delivery data to a
+  decision-ready report in under a minute.
 
 ## Enterprise Guardrails
 
 - The system recommends but does not approve delivery, release or escalation decisions.
 - It preserves deterministic evidence and scoring as the source-of-truth assessment.
-- OpenAI is optional and does not change the Delivery Health Score, findings, evidence keys or score deductions.
-- This design is appropriate for regulated banking operations and shared services governance because accountable leaders retain decision authority.
+- OpenAI is optional and does not change the Delivery Health Score, findings, evidence keys or score
+  deductions.
+- This design is appropriate for regulated banking operations and shared services governance because
+  accountable leaders retain decision authority.
 
 ## MVP Scope
 
@@ -102,7 +122,8 @@ This separation makes the analysis modular, explainable, and extensible. Each ag
 - PDF generation.
 - Complex multi-agent frameworks.
 
-These exclusions keep the hackathon implementation focused on proving user value and analytical credibility.
+These exclusions keep the hackathon implementation focused on proving user value and analytical
+credibility.
 
 ## Future Roadmap
 
